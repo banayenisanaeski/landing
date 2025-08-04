@@ -13,12 +13,12 @@ export default function Home() {
             alt="Logo"
             style={{ width: '400px', height: 'auto', marginBottom: '0.5rem' }}
           />
-          <h1 className="text-4xl md:text-6xl font-bold text-green-800">Banayenisanaeski</h1>
+          <h1 className="text-4xl md:text-6xl font-bold text-green-800">BanaYeni SanaEski</h1>
         </div>
 
-        <p className="text-xl text-gray-700">Senin için eski olan benim işime yarayabilir</p>
+        <p className="text-xl text-gray-700">Senin için eski olan bir başkasının işine yarayabilir!</p>
         <p className="mt-2 text-md text-gray-500 max-w-xl">
-          Türkiye’nin sürdürülebilir online hurdalığına hoş geldiniz. Aradığımız parçayı bularak veya elimizdekini satarak sürdürülebilir ekonomiye can veriyoruz.
+          Türkiye’nin sürdürülebilir online hurdalığına hoş geldiniz. Aradığımız parçayı bulmanıza veya elinizdekini satmanıza yardım ederek sürdürülebilir ekonomiye can veriyoruz.
         </p>
 
         <div className="mt-8 flex gap-4">
