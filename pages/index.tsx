@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Navbar from '../components/Navbar';
 
 export default function Home() {
@@ -21,12 +22,16 @@ export default function Home() {
         </p>
 
         <div className="mt-8 flex gap-4">
-          <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-xl shadow-md">
-            Parça Ara
-          </button>
-          <button className="bg-white border border-green-600 text-green-600 px-6 py-2 rounded-xl shadow-md">
-            Parça Sat
-          </button>
+          <Link href="/search">
+            <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-xl shadow-md">
+              Parça Ara
+            </button>
+          </Link>
+          <Link href="/sell">
+            <button className="bg-white border border-green-600 text-green-600 px-6 py-2 rounded-xl shadow-md">
+              Parça Sat
+            </button>
+          </Link>
         </div>
 
         <footer className="mt-20 text-sm text-gray-400">
