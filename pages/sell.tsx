@@ -1,5 +1,6 @@
-// pages/sell.tsx
+// pages/sell.tsx 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function SellPage() {
   const [formData, setFormData] = useState({
@@ -68,7 +69,16 @@ export default function SellPage() {
         <textarea name="details" placeholder="Detaylar" onChange={handleChange} value={formData.details} className="w-full p-2 border rounded" />
         <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">Gönder</button>
       </form>
+
       {message && <p className="mt-4 text-sm text-red-500">{message}</p>}
+
+      <div className="mt-6">
+        <Link href="/">
+          <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded shadow">
+            Ana Sayfaya Dön
+          </button>
+        </Link>
+      </div>
     </main>
   );
 }
