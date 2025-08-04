@@ -4,14 +4,14 @@ export default function Home() {
       <div className="flex flex-col items-center mb-6">
         <img
           src="/logo-banayenisanaeski.png"
-          alt="Bana Yeniyse Sana Eskidir Logo"
-          className="w-28 h-auto mb-2"
+          alt="Logo"
+          style={{ width: '400px', height: 'auto', marginBottom: '0.5rem' }}
         />
         <h1 className="text-4xl md:text-6xl font-bold text-green-800">Banayenisanaeski</h1>
       </div>
-      <p className="text-xl text-gray-700">Eski sana, yeni bana!</p>
+      <p className="text-xl text-gray-700">Senin için eski olan benim işime yarayabilir</p>
       <p className="mt-2 text-md text-gray-500 max-w-xl">
-        Türkiye’nin sürdürülebilir online hurdalığına hoş geldiniz. Arızalı parçaları ekonomiye geri kazandırıyoruz.
+        Türkiye’nin sürdürülebilir online hurdalığına hoş geldiniz. Aradığımız parçayı bularak veya elimizdekini satarak sürdürülebilir ekonomiye can veriyoruz.
       </p>
       <div className="mt-8 flex gap-4">
         <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-xl shadow-md">
