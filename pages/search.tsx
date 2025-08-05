@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { getCurrentUser } from '../lib/supabaseClient';
 
 export default function SearchPage() {
   const [filters, setFilters] = useState({
@@ -8,7 +9,6 @@ export default function SearchPage() {
     condition: '',
     city: '',
     region: '',
-    sellerId: '',
     priceMin: '',
     priceMax: '',
     brand: '',
@@ -53,6 +53,35 @@ export default function SearchPage() {
     }
   };
 
+  // 👇 Talep butonu için yeni fonksiyon
+  const handleMatchRequest = async (partId: number) => {
+    const user = await getCurrentUser();
+    if (!user) {
+      alert('Lütfen giriş yapınız.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/match-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          buyer_id: user.id,
+          part_id: partId,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert('Talebiniz gönderildi');
+      } else {
+        alert('Hata: ' + data.message);
+      }
+    } catch (err) {
+      alert('Sunucu hatası.');
+    }
+  };
+
   return (
     <main className="p-8 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-6">Parça Ara</h1>
@@ -65,7 +94,6 @@ export default function SearchPage() {
           <option value="Kullanılabilir">Kullanılabilir</option>
           <option value="Arızalı">Arızalı</option>
         </select>
-        <input name="sellerId" placeholder="Satıcı ID" onChange={handleChange} className="p-2 border rounded" />
         <input name="city" placeholder="Şehir" onChange={handleChange} className="p-2 border rounded" />
         <input name="region" placeholder="Bölge" onChange={handleChange} className="p-2 border rounded" />
         <input name="brand" placeholder="Marka" onChange={handleChange} className="p-2 border rounded" />
@@ -99,8 +127,24 @@ export default function SearchPage() {
             <p>Fiyat: {item.price} TL</p>
             <p>Şehir: {item.city}</p>
             <p>Bölge: {item.region}</p>
-            <p>Satıcı ID: {item.seller_id}</p>
+            <p>Satıcı ID: {item.user_id}</p>
             <p className="text-sm text-gray-600">{item.details}</p>
+
+            {/* 👇 Talep Gönder butonu */}
+            <div className="flex gap-2 mt-2">
+              <button
+                className="bg-green-600 text-white px-2 py-1 rounded"
+                onClick={() => handleMatchRequest(item.id)}
+              >
+                İlgileniyorum
+              </button>
+              <button
+                className="bg-red-600 text-white px-2 py-1 rounded"
+                onClick={() => alert('Bu parça ile ilgilenmiyorsunuz.')}
+              >
+                İlgilenmiyorum
+              </button>
+            </div>
           </li>
         ))}
       </ul>

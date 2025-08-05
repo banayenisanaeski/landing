@@ -15,14 +15,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const {
     partName,
     partCode,
-    brand,     // ✅ Yeni alan
-    model,     // ✅ Yeni alan
+    brand,
+    model,
     condition,
     price,
     city,
     region,
-    sellerId,
-    details
+    details,
+    user_id, // 👈 yeni alan
   } = req.body;
 
   try {
@@ -30,14 +30,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       {
         part_name: partName,
         part_code: partCode,
-        brand,         // ✅ Yeni alan
-        model,         // ✅ Yeni alan
+        brand,
+        model,
         condition,
         price,
         city,
         region,
-        seller_id: sellerId,
         details,
+        user_id, // 👈 veritabanı user_id sütununa yazılacak
       },
     ]);
 

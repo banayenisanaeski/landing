@@ -1,18 +1,18 @@
 // pages/sell.tsx
 import { useState } from 'react';
 import Link from 'next/link';
+import { getCurrentUser } from '../lib/supabaseClient'; // 👈 Giriş yapan kullanıcıyı almak için
 
 export default function SellPage() {
   const [formData, setFormData] = useState({
     partName: '',
     partCode: '',
-    brand: '',         // ✅ Yeni alan
-    model: '',         // ✅ Yeni alan
+    brand: '',
+    model: '',
     condition: '',
     price: '',
     city: '',
     region: '',
-    sellerId: '',
     details: '',
   });
 
@@ -29,7 +29,17 @@ export default function SellPage() {
     e.preventDefault();
     setMessage('');
 
-    console.log('Form gönderildi:', formData);
+    const user = await getCurrentUser(); // 👈 Kullanıcıyı al
+
+    if (!user) {
+      setMessage('❌ Lütfen giriş yapın.');
+      return;
+    }
+
+    const dataToSend = {
+      ...formData,
+      user_id: user.id, // 👈 user_id olarak ekle
+    };
 
     try {
       const res = await fetch('/api/supabaseParts', {
@@ -37,7 +47,7 @@ export default function SellPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
 
       const data = await res.json();
@@ -47,13 +57,12 @@ export default function SellPage() {
         setFormData({
           partName: '',
           partCode: '',
-          brand: '',     // ✅ Reset
-          model: '',     // ✅ Reset
+          brand: '',
+          model: '',
           condition: '',
           price: '',
           city: '',
           region: '',
-          sellerId: '',
           details: '',
         });
       } else {
@@ -71,8 +80,6 @@ export default function SellPage() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <input name="partName" placeholder="Parça Adı" onChange={handleChange} value={formData.partName} className="w-full p-2 border rounded" />
         <input name="partCode" placeholder="Parça Kodu" onChange={handleChange} value={formData.partCode} className="w-full p-2 border rounded" />
-
-        {/* ✅ Yeni input alanları */}
         <input name="brand" placeholder="Marka" onChange={handleChange} value={formData.brand} className="w-full p-2 border rounded" />
         <input name="model" placeholder="Model" onChange={handleChange} value={formData.model} className="w-full p-2 border rounded" />
 
@@ -85,7 +92,6 @@ export default function SellPage() {
         <input name="price" placeholder="Fiyat" type="number" onChange={handleChange} value={formData.price} className="w-full p-2 border rounded" />
         <input name="city" placeholder="Şehir" onChange={handleChange} value={formData.city} className="w-full p-2 border rounded" />
         <input name="region" placeholder="Bölge" onChange={handleChange} value={formData.region} className="w-full p-2 border rounded" />
-        <input name="sellerId" placeholder="Satıcı ID" onChange={handleChange} value={formData.sellerId} className="w-full p-2 border rounded" />
         <textarea name="details" placeholder="Detaylar" onChange={handleChange} value={formData.details} className="w-full p-2 border rounded" />
         <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">
           Gönder
