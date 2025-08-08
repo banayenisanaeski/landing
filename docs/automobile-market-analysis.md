@@ -105,7 +105,7 @@
 
 **Platform Solution Potential:**
 - Pre-scrap vehicle assessment and parts extraction listings
-- AI-powered parts identification from vehicle specifications
+- AI powered vehicle estimation from reference information(compatibility mapping)
 - Buyer notification system for available working components
 
 ### Secondary Inefficiency: Heavy Maintenance Parts Sourcing

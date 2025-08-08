@@ -63,7 +63,6 @@ The platform architecture centers on **reference-code based part matching** enha
 ReferenceCodeService
 ├── PartReferenceDatabase
 │   ├── ManufacturerCodes (OEM reference standards)
-│   ├── AftermarketCodes (alternative part numbers)
 │   └── CrossReferenceMapping (compatibility matrix)
 ├── ValidationEngine
 │   ├── CodeFormatValidation
