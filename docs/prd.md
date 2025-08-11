@@ -27,7 +27,7 @@ BanaYeni SanaEski addresses critical inefficiencies in the automobile parts mark
 
 - FR1: The platform uses AI-powered image recognition to extract mandatory automotive part reference codes from uploaded photographs with confidence scoring for individual part listings
 - FR2: Buyers can create wanted listings using either reference codes or vehicle specifications (make/model/year)
-- FR3: The platform instantly notifies relevant sellers when parts matching their inventory are requested through wanted listings
+- FR3: The platform notifies relevant sellers when parts matching their inventory are requested through wanted listings
 - FR4: The AI compatibility engine maps reference codes to all compatible vehicles to ensure notifications reach only relevant sellers
 - FR5: Sellers can list complete vehicles for dismantling (no reference code required, only brand/model/year and description) OR individual spare parts (reference code mandatory)
 - FR6: The platform provides differentiated interfaces for individual users (brand/model specific) and industrial users (product/component specific)
